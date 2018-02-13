@@ -6,45 +6,48 @@
 <link rel="stylesheet" href="{{=URL('static','css/leafletDraw.css')}}"/>
 {{end}} 
 
-{{block page_js}}
-<script src="{{=URL('static','js/appMapas.js')}}"></script>
-{{end}}
 
-{{block header}}
-<center style="background-color: #333; color:white; padding:30px">
-  <h1>/{{=request.application}}/{{=request.controller}}/{{=request.function}}
-</center>
-{{end}}
 
 {{if 'message' in globals():}}
-<h2>{{=message}}</h2>
-<div id="mapid"></div>
 
-<!--<p class="lead">{{=T('How did you get here?')}}</p>
-<ol>
-  <li>{{=T('You are successfully running web2py')}}</li>
-  <li>{{=XML(T('You visited the url %s', A(request.env.path_info,_href=request.env.path_info)))}}</li>
-  <li>{{=XML(T('Which called the function %s located in the file %s',
-    (A(request.function+'()',_href='#'),
-    A('web2py/applications/%(application)s/controllers/%(controller)s.py' % request,
-    _href=URL('admin','default','peek', args=(request.application,'controllers',request.controller+'.py'))))))}}</li>
-  <li>{{=XML(T('The output of the file is a dictionary that was rendered by the view %s',
-    A('web2py/applications/%(application)s/views/%(controller)s/index.html' % request,
-    _href=URL('admin','default','peek',args=(request.application,'views',request.controller,'index.html')))))}}</li>
-  <li>{{=T('You can modify this application and adapt it to your needs')}}</li>
-</ol>-->
-<!--<center style="padding:50px">
-  <a class="btn btn-primary" href="{{=URL('admin','default','index')}}">
-    <i class="glyphicon glyphicon-cog"></i>
-    {{=T("admin")}}
-  </a>
-  <a class="btn btn-secondary" href="{{=URL('examples','default','index')}}">{{=T("Online examples")}}</a>
-  <a class="btn btn-secondary" href="http://web2py.com">web2py.com</a>
-  <a class="btn btn-secondary" href="http://web2py.com/book">{{=T('Documentation')}}</a>
-  <a class="btn btn-secondary" href="{{=URL('default','api_get_user_email')}}">{{=T('API Example')}}</a>
-  <a class="btn btn-secondary" href="{{=URL('default','grid/auth_user')}}">{{=T('Grid Example')}}</a>
-  <a class="btn btn-secondary" href="{{=URL('default','wiki')}}">{{=T('Wiki Example')}}</a>
-</center>-->
+<div class="container">
+    <div class="row">
+      <div class="col-sm-4" >
+          <div class="form-group">
+            <div class="form-group">
+              <label for="campuslist">Campus</label>
+              <select class="form-control" id="campuslist">
+                <option>Choose the campus...</option>
+              </select>
+            </div>
+
+            <label for="device">Search by Device ID</label>
+            <input type="text" class="form-control" id="idDevice" placeholder="Search by Device ID">
+            <button class="btn btn-primary" id="deviceButton">Search</button>
+            <br>
+
+            <label for="exampleFormControlInput1">Search by user ID</label>
+            <input type="email" class="form-control" id="userid" placeholder="Example : User:41">
+            <button class="btn btn-primary" id="userIdButton" >Search</button>
+
+            <br>
+
+            <label for="exampleFormControlInput1">Search by user name</label>
+            <input type="email" class="form-control" id="name" placeholder="Example : Daniel Torres">
+            <button class="btn btn-primary" id="nameButton" >Search</button>
+          </div>
+      </div>
+      <div class="col-sm-8" id="mapid">
+      </div>
+    </div>
+  </div>
+
+{{block page_js}}
+  <script src="{{=URL('static','js/appMap.js')}}"></script>
+{{end}}
+
+
+  
 
 {{elif 'content' in globals():}}
 {{=content}}
